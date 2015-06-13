@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60FE72E61B2CA05C007E0974 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE72E51B2CA05C007E0974 /* ConversationViewController.swift */; };
+		60FE72E81B2CA10F007E0974 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE72E71B2CA10F007E0974 /* MessagesViewController.swift */; };
 		6E5DC00B1B2C04A2001A6035 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5DC00A1B2C04A2001A6035 /* AppDelegate.swift */; };
 		6E5DC00D1B2C04A2001A6035 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5DC00C1B2C04A2001A6035 /* ViewController.swift */; };
 		6E5DC0101B2C04A2001A6035 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E5DC00E1B2C04A2001A6035 /* Main.storyboard */; };
@@ -30,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		60FE72E51B2CA05C007E0974 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		60FE72E71B2CA10F007E0974 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		6E5DC0051B2C04A2001A6035 /* Luna.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Luna.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E5DC0091B2C04A2001A6035 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E5DC00A1B2C04A2001A6035 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,7 +89,9 @@
 		6E5DC0071B2C04A2001A6035 /* Luna */ = {
 			isa = PBXGroup;
 			children = (
+				60FE72E71B2CA10F007E0974 /* MessagesViewController.swift */,
 				6E5DC00A1B2C04A2001A6035 /* AppDelegate.swift */,
+				60FE72E51B2CA05C007E0974 /* ConversationViewController.swift */,
 				6E5DC00C1B2C04A2001A6035 /* ViewController.swift */,
 				6EDD09FC1B2C196D00535235 /* OnboardingViewController.swift */,
 				6E5DC00E1B2C04A2001A6035 /* Main.storyboard */,
@@ -235,8 +241,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60FE72E81B2CA10F007E0974 /* MessagesViewController.swift in Sources */,
 				6E5DC00D1B2C04A2001A6035 /* ViewController.swift in Sources */,
 				6EDD09FD1B2C196D00535235 /* OnboardingViewController.swift in Sources */,
+				60FE72E61B2CA05C007E0974 /* ConversationViewController.swift in Sources */,
 				6E5DC00B1B2C04A2001A6035 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

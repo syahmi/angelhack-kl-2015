@@ -20,6 +20,7 @@ class OnboardingController: UIViewController, UIScrollViewDelegate {
     let screen: CGRect = UIScreen.mainScreen().bounds
 	var scroll: UIScrollView?
 	var dots: UIPageControl?
+    let button = UIButton.buttonWithType(UIButtonType.System) as! UIButton
 	
     override func viewDidLoad() {
 		super.viewDidLoad()
@@ -64,15 +65,13 @@ class OnboardingController: UIViewController, UIScrollViewDelegate {
                 
 				scroll?.addSubview(textView)
 			}
-            
-            let button = UIButton.buttonWithType(UIButtonType.System) as! UIButton
             button.frame = CGRectMake(0.0, screen.height * 0.88, screen.width, 50)
             button.backgroundColor = UIColor.clearColor()
             button.titleLabel?.textAlignment = NSTextAlignment.Center
             button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
             button.setTitle("Get Started", forState: UIControlState.Normal)
             button.titleLabel?.font = UIFont(name: "AvenirNext-Medium", size: 19)
-            button.addTarget(self, action: "pressed:", forControlEvents: UIControlEvents.TouchUpInside)
+            button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
             
             self.view.addSubview(button)
 		}
@@ -82,12 +81,8 @@ class OnboardingController: UIViewController, UIScrollViewDelegate {
 		dots?.addTarget(self, action: Selector("swipe:"), forControlEvents: UIControlEvents.ValueChanged)
 	}
     
-    func pressed(sender: UIButton!) {
-        var alertView = UIAlertView();
-        alertView.addButtonWithTitle("Ok");
-        alertView.title = "title";
-        alertView.message = "message";
-        alertView.show();
+    func buttonAction(sender: UIButton){
+        self.performSegueWithIdentifier("continueToCVC", sender: self)
     }
     
     override func didReceiveMemoryWarning() {
