@@ -11,9 +11,9 @@ import UIKit
 class OnboardingController: UIViewController, UIScrollViewDelegate {
 	let backgroundColor = UIColor(red: 71.0/255.0, green: 59.0/255.0, blue: 80.0/255.0, alpha: 1.0)
 	let slides = [
+		[ "image": "splash_logo.png", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
 		[ "image": "splash_logo.png", "text": "Lorem Ipsum"],
-		[ "image": "splash_logo.png", "text": "Lorem Ipsum"],
-		[ "image": "splash_logo.png", "text": "Lorem Ipsum"],
+		[ "image": "splash_logo.png", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
         [ "image": "splash_logo.png", "text": "Lorem Ipsum"],
 	]
 	
@@ -30,7 +30,7 @@ class OnboardingController: UIViewController, UIScrollViewDelegate {
 		scroll?.pagingEnabled = true
 		view.addSubview(scroll!)
 		if (slides.count > 1) {
-			dots = UIPageControl(frame: CGRect(x: 0.0, y: screen.height * 0.9, width: screen.width, height: screen.height * 0.05))
+			dots = UIPageControl(frame: CGRect(x: 0.0, y: screen.height * 0.8, width: screen.width, height: screen.height * 0.05))
 			dots?.numberOfPages = slides.count
 			view.addSubview(dots!)
 		}
@@ -41,7 +41,7 @@ class OnboardingController: UIViewController, UIScrollViewDelegate {
 				scroll?.addSubview(imageView)
 			}
 			if let text = slides[i]["text"] {
-				var textView = UITextView(frame: CGRect(x: screen.width * 0.1 + CGFloat(i) * screen.width, y: screen.height * 0.75, width: screen.width * 0.8, height: 100.0))
+				var textView = UITextView(frame: CGRect(x: screen.width * 0.1 + CGFloat(i) * screen.width, y: screen.height * 0.70, width: screen.width * 0.8, height: 100.0))
 				textView.text = text
 				textView.editable = false
 				textView.selectable = false
@@ -51,7 +51,17 @@ class OnboardingController: UIViewController, UIScrollViewDelegate {
 				textView.backgroundColor = UIColor.clearColor()
 				scroll?.addSubview(textView)
 			}
+            
+            let button = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+            button.frame = CGRectMake(100, screen.height * 0.85, 100, 50)
+            button.backgroundColor = UIColor.clearColor()
+            button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+            button.setTitle("Get Started", forState: UIControlState.Normal)
+            button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+            
+            self.view.addSubview(button)
 		}
+        
 		scroll?.contentSize = CGSizeMake(CGFloat(Int(screen.width) *  slides.count), screen.height * 0.5)
 		scroll?.delegate = self
 		dots?.addTarget(self, action: Selector("swipe:"), forControlEvents: UIControlEvents.ValueChanged)
