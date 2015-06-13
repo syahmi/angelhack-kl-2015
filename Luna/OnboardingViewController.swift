@@ -11,10 +11,10 @@ import UIKit
 class OnboardingController: UIViewController, UIScrollViewDelegate {
 	let backgroundColor = UIColor(red: 71.0/255.0, green: 59.0/255.0, blue: 80.0/255.0, alpha: 1.0)
 	let slides = [
-		[ "image": "splash_logo.png", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
-		[ "image": "splash_logo.png", "text": "Lorem Ipsum"],
-		[ "image": "splash_logo.png", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
-        [ "image": "splash_logo.png", "text": "Lorem Ipsum"],
+		[ "image": "splash_logo.png", "textheading": "Title 1", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
+		[ "image": "splash_logo.png", "textheading": "Title 2", "text": "Lorem Ipsum"],
+		[ "image": "splash_logo.png", "textheading": "Title 3", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
+        [ "image": "splash_logo.png", "textheading": "Title 4", "text": "Lorem Ipsum"],
 	]
 	
     let screen: CGRect = UIScreen.mainScreen().bounds
@@ -30,7 +30,7 @@ class OnboardingController: UIViewController, UIScrollViewDelegate {
 		scroll?.pagingEnabled = true
 		view.addSubview(scroll!)
 		if (slides.count > 1) {
-			dots = UIPageControl(frame: CGRect(x: 0.0, y: screen.height * 0.8, width: screen.width, height: screen.height * 0.05))
+			dots = UIPageControl(frame: CGRect(x: 0.0, y: screen.height * 0.82, width: screen.width, height: screen.height * 0.05))
 			dots?.numberOfPages = slides.count
 			view.addSubview(dots!)
 		}
@@ -40,24 +40,39 @@ class OnboardingController: UIViewController, UIScrollViewDelegate {
 				imageView.image = image
 				scroll?.addSubview(imageView)
 			}
+            if let textHeading = slides[i]["textheading"] {
+                var textHeadingView = UITextView(frame: CGRect(x: screen.width * 0.1 + CGFloat(i) * screen.width, y: screen.height * 0.65, width: screen.width * 0.8, height: 100.0))
+                textHeadingView.text = textHeading
+                textHeadingView.editable = false
+                textHeadingView.selectable = false
+                textHeadingView.textAlignment = NSTextAlignment.Center
+                textHeadingView.font = UIFont(name: "AvenirNext-Medium", size: 20)
+                textHeadingView.textColor = UIColor.whiteColor()
+                textHeadingView.backgroundColor = UIColor.clearColor()
+                scroll?.addSubview(textHeadingView)
+            }
+            
 			if let text = slides[i]["text"] {
 				var textView = UITextView(frame: CGRect(x: screen.width * 0.1 + CGFloat(i) * screen.width, y: screen.height * 0.70, width: screen.width * 0.8, height: 100.0))
 				textView.text = text
 				textView.editable = false
 				textView.selectable = false
 				textView.textAlignment = NSTextAlignment.Center
-				textView.font = UIFont(name: "Helvetica Neue", size: 17)
+				textView.font = UIFont(name: "AvenirNext-Regular", size: 17)
 				textView.textColor = UIColor.whiteColor()
 				textView.backgroundColor = UIColor.clearColor()
+                
 				scroll?.addSubview(textView)
 			}
             
             let button = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-            button.frame = CGRectMake(100, screen.height * 0.85, 100, 50)
+            button.frame = CGRectMake(0.0, screen.height * 0.88, screen.width, 50)
             button.backgroundColor = UIColor.clearColor()
+            button.titleLabel?.textAlignment = NSTextAlignment.Center
             button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
             button.setTitle("Get Started", forState: UIControlState.Normal)
-            button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+            button.titleLabel?.font = UIFont(name: "AvenirNext-Medium", size: 19)
+            button.addTarget(self, action: "pressed:", forControlEvents: UIControlEvents.TouchUpInside)
             
             self.view.addSubview(button)
 		}
@@ -66,7 +81,15 @@ class OnboardingController: UIViewController, UIScrollViewDelegate {
 		scroll?.delegate = self
 		dots?.addTarget(self, action: Selector("swipe:"), forControlEvents: UIControlEvents.ValueChanged)
 	}
-	
+    
+    func pressed(sender: UIButton!) {
+        var alertView = UIAlertView();
+        alertView.addButtonWithTitle("Ok");
+        alertView.title = "title";
+        alertView.message = "message";
+        alertView.show();
+    }
+    
     override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 	}
