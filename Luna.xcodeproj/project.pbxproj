@@ -13,6 +13,9 @@
 		6E5DC0121B2C04A2001A6035 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E5DC0111B2C04A2001A6035 /* Images.xcassets */; };
 		6E5DC0151B2C04A2001A6035 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E5DC0131B2C04A2001A6035 /* LaunchScreen.xib */; };
 		6E5DC0211B2C04A2001A6035 /* LunaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5DC0201B2C04A2001A6035 /* LunaTests.swift */; };
+		6E5DC02D1B2C0DCD001A6035 /* splash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E5DC02A1B2C0DCD001A6035 /* splash_logo.png */; };
+		6E5DC02E1B2C0DCD001A6035 /* splash_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E5DC02B1B2C0DCD001A6035 /* splash_logo@2x.png */; };
+		6E5DC02F1B2C0DCD001A6035 /* splash_logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E5DC02C1B2C0DCD001A6035 /* splash_logo@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		6E5DC01A1B2C04A2001A6035 /* LunaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E5DC01F1B2C04A2001A6035 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E5DC0201B2C04A2001A6035 /* LunaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunaTests.swift; sourceTree = "<group>"; };
+		6E5DC02A1B2C0DCD001A6035 /* splash_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash_logo.png; path = Images/splash_logo.png; sourceTree = "<group>"; };
+		6E5DC02B1B2C0DCD001A6035 /* splash_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash_logo@2x.png"; path = "Images/splash_logo@2x.png"; sourceTree = "<group>"; };
+		6E5DC02C1B2C0DCD001A6035 /* splash_logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash_logo@3x.png"; path = "Images/splash_logo@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +86,7 @@
 				6E5DC00A1B2C04A2001A6035 /* AppDelegate.swift */,
 				6E5DC00C1B2C04A2001A6035 /* ViewController.swift */,
 				6E5DC00E1B2C04A2001A6035 /* Main.storyboard */,
+				6E5DC0301B2C0DE3001A6035 /* Images */,
 				6E5DC0111B2C04A2001A6035 /* Images.xcassets */,
 				6E5DC0131B2C04A2001A6035 /* LaunchScreen.xib */,
 				6E5DC0081B2C04A2001A6035 /* Supporting Files */,
@@ -110,6 +117,16 @@
 				6E5DC01F1B2C04A2001A6035 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6E5DC0301B2C0DE3001A6035 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				6E5DC02A1B2C0DCD001A6035 /* splash_logo.png */,
+				6E5DC02B1B2C0DCD001A6035 /* splash_logo@2x.png */,
+				6E5DC02C1B2C0DCD001A6035 /* splash_logo@3x.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,8 +210,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E5DC0101B2C04A2001A6035 /* Main.storyboard in Resources */,
+				6E5DC02D1B2C0DCD001A6035 /* splash_logo.png in Resources */,
 				6E5DC0151B2C04A2001A6035 /* LaunchScreen.xib in Resources */,
+				6E5DC02E1B2C0DCD001A6035 /* splash_logo@2x.png in Resources */,
 				6E5DC0121B2C04A2001A6035 /* Images.xcassets in Resources */,
+				6E5DC02F1B2C0DCD001A6035 /* splash_logo@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +429,7 @@
 				6E5DC0261B2C04A2001A6035 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6E5DC0271B2C04A2001A6035 /* Build configuration list for PBXNativeTarget "LunaTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +438,7 @@
 				6E5DC0291B2C04A2001A6035 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
