@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-//import SwiftHTTP
+import SwiftHTTP
 
 class MessagesViewController : UIViewController, UITextFieldDelegate {
     @IBOutlet var messageField: UITextField!
@@ -25,17 +25,17 @@ class MessagesViewController : UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         println(messageField.text);
-//        var request = HTTPTask()
-//        request.GET("http://vluxe.io", parameters: nil, completionHandler: {(response: HTTPResponse) in
-//            if let err = response.error {
-//                println("error: \(err.localizedDescription)")
-//                return //also notify app of failure as needed
-//            }
-//            if let data = response.responseObject as? NSData {
-//                let str = NSString(data: data, encoding: NSUTF8StringEncoding)
-//                println("response: \(str)") //prints the HTML of the page
-//            }
-//        })
+        var request = HTTPTask()
+        request.GET("http://google.com", parameters: nil, completionHandler: {(response: HTTPResponse) in
+            if let err = response.error {
+                println("error: \(err.localizedDescription)")
+                return //also notify app of failure as needed
+            }
+            if let data = response.responseObject as? NSData {
+                let str = NSString(data: data, encoding: NSUTF8StringEncoding)
+                println("response: \(str)") //prints the HTML of the page
+            }
+        })
         return true
     }
 }
