@@ -31,6 +31,8 @@ class MessagesViewController : UIViewController, UITextFieldDelegate, UITableVie
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let message = Message(content: "hello poeple", createdAt: dateFormatter.dateFromString(dateString)!, senderID: 1, receiverID: 2)
         self.messages.append(message)
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
     
     override func viewDidAppear(animated: Bool) {

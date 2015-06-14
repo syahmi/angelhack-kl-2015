@@ -67,6 +67,8 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
         if mes.all.count > 0 {
             cell.textLabel?.text = mes.all.last!.content
         }
+        cell.backgroundColor = UIColor.clearColor()
+        cell.textLabel?.textColor = UIColor.whiteColor()
         return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
