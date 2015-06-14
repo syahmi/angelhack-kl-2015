@@ -48,6 +48,23 @@
                                     <action selector="shareAction:" destination="K91-HL-0uv" eventType="touchUpInside" id="tIL-qe-HpT"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="308-Ms-Ex3">
+                                <rect key="frame" x="150" y="64" width="300" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="gwP-89-0U2">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gwP-89-0U2" id="sUy-j1-wyP">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="K91-HL-0uv" id="wZi-Vu-9wK"/>
+                                    <outlet property="delegate" destination="K91-HL-0uv" id="vkg-tf-gcx"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -72,6 +89,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="messagesTable" destination="308-Ms-Ex3" id="FsN-OM-w8S"/>
                         <outlet property="shareButton" destination="MWa-ae-ozP" id="ggd-XE-wg5"/>
                         <segue destination="mTU-xN-A1t" kind="show" identifier="showShare" id="b24-fm-skU"/>
                     </connections>
