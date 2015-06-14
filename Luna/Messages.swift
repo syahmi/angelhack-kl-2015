@@ -10,6 +10,11 @@ import Foundation
 
 class Messages {
     var all: [Message] = []
+    var conversationID:Int = Int()
+    
+    init(conversationID:Int){
+        self.conversationID = conversationID
+    }
     
     func append(message: Message){
         self.all.append(message)

@@ -14,7 +14,7 @@ class MessagesViewController : UIViewController, UITextFieldDelegate, UITableVie
     @IBOutlet var messageTable: UITableView!
     @IBOutlet var messageField: UITextField!
     let defaults = NSUserDefaults.standardUserDefaults()
-    var messages: Messages = Messages()
+    var messages: Messages = Messages(conversationID: 1)
     
     
     override func viewDidLoad() {
@@ -26,10 +26,10 @@ class MessagesViewController : UIViewController, UITextFieldDelegate, UITableVie
         messageTable.delegate = self
         self.messageTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
-        let dateString = "2014-07-05"
+        let dateString = "2015-06-12"
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let message = Message(content: "hello poeple", createdAt: dateFormatter.dateFromString(dateString)!, senderID: 1, receiverID: 2)
+        let message = Message(content: "hello poeple", createdAt: dateFormatter.dateFromString(dateString)!, senderID: "hackangel", receiverID: "angelhack")
         self.messages.append(message)
         
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
@@ -42,6 +42,13 @@ class MessagesViewController : UIViewController, UITextFieldDelegate, UITableVie
     
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        let dateString = "2015-06-14"
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        var newMessage = Message(content: textField.text, createdAt: dateFormatter.dateFromString(dateString)!, senderID:"angelhack", receiverID: "hackangel")
+        self.messages.append(newMessage)
+        self.messageTable.reloadData()
 //        var request = HTTPTask()
 //        request.GET("http://google.com", parameters: nil, completionHandler: {(response: HTTPResponse) in
 //            if let err = response.error {
@@ -54,7 +61,6 @@ class MessagesViewController : UIViewController, UITextFieldDelegate, UITableVie
 //                println("response: \(str)") //prints the HTML of the page
 //            }
 //        })
-        self.navigationController?.popViewControllerAnimated(true)
         return true
     }
     

@@ -11,10 +11,10 @@ import Foundation
 class Message {
     var content:String = ""
     var createdAt:NSDate = NSDate.new()
-    var senderID:Int = 0
-    var receiverID:Int = 0
+    var senderID:String = String()
+    var receiverID:String = String()
     
-    init(content:String, createdAt:NSDate, senderID:Int, receiverID:Int){
+    init(content:String, createdAt:NSDate, senderID:String, receiverID:String){
         self.content = content
         self.createdAt = createdAt
         self.senderID = senderID
