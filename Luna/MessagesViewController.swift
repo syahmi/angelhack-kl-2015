@@ -16,6 +16,9 @@ class MessagesViewController : UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         messageField.delegate = self
+        
+        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        view.addGestureRecognizer(tap)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -37,5 +40,9 @@ class MessagesViewController : UIViewController, UITextFieldDelegate {
             }
         })
         return true
+    }
+    
+    func DismissKeyboard(){
+        view.endEditing(true)
     }
 }

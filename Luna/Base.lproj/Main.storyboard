@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="-150" y="280"/>
         </scene>
-        <!--Conversation View Controller-->
+        <!--Luna-->
         <scene sceneID="K4W-0v-xZG">
             <objects>
                 <viewController id="K91-HL-0uv" customClass="ConversationViewController" customModule="Luna" customModuleProvider="target" sceneMemberID="viewController">
@@ -64,7 +64,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="wce-Da-dfA">
+                    <navigationItem key="navigationItem" title="Luna" id="wce-Da-dfA">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="SMH-8Q-0cc">
                             <connections>
                                 <action selector="newAction:" destination="K91-HL-0uv" id="2xX-Z8-o03"/>
