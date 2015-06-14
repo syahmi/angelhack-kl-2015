@@ -5,13 +5,13 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>61B293B4-8E57-4931-963C-ACE30B24720C</string>
+	<string>1EF5ED9D-0B23-4C5F-962A-BAF448B1333B</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Luna</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>E8F999BDA936B5F58012CD6B293DE0D68EC580A4</key>
-		<string>github.com:syahmi/angelhack-kl-2015.git</string>
+		<string>https://github.com/syahmi/angelhack-kl-2015</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Luna.xcodeproj</string>
@@ -21,7 +21,7 @@
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>github.com:syahmi/angelhack-kl-2015.git</string>
+	<string>https://github.com/syahmi/angelhack-kl-2015</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>E8F999BDA936B5F58012CD6B293DE0D68EC580A4</string>
 			<key>IDESourceControlWCCName</key>
-			<string>luna-ios</string>
+			<string>iOS</string>
 		</dict>
 	</array>
 </dict>
