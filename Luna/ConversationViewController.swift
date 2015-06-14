@@ -13,29 +13,27 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet var messagesTable: UITableView!
     @IBOutlet var shareButton: UIButton!
     let defaults = NSUserDefaults.standardUserDefaults()
-    var messages: Messages = Messages(conversationID: 1)
+    var messages: Messages = Messages.sharedInstance
     var messagesArray: [Messages] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         defaults.setBool(false, forKey: "sentMessages")
         self.messagesTable.delegate = self
         self.messagesTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        let dateString = "2014-07-05"
-        var dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let message = Message(content: "hello poeple", createdAt: dateFormatter.dateFromString(dateString)!, senderID: "angelhack", receiverID: "hackangel")
-        self.messages.append(message)
-        self.messagesArray = [messages]
-        self.messagesTable.reloadData()
+        self.messagesTable.hidden = true
+        self.shareButton.hidden = true
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-        var sentMessage:Bool = defaults.valueForKey("sentMessages") as! Bool
-        if (sentMessage) {
-             messagesTable.hidden = true
+        if self.messages.all.count > 0 {
+           self.messagesArray = [self.messages]
+        }
+        if (self.messagesArray.count == 0) {
+            self.shareButton.hidden = false
         } else {
-            shareButton.hidden = true
+            self.messagesTable.hidden = false
+            self.messagesTable.reloadData()
         }
     }
 
