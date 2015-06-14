@@ -10,11 +10,11 @@ import UIKit
 
 class OnboardingController: UIViewController, UIScrollViewDelegate {
 	let backgroundColor = UIColor(red: 71.0/255.0, green: 59.0/255.0, blue: 80.0/255.0, alpha: 1.0)
-	let slides = [
-		[ "image": "splash_logo.png", "textheading": "Title 1", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
-		[ "image": "splash_logo.png", "textheading": "Title 2", "text": "Lorem Ipsum"],
-		[ "image": "splash_logo.png", "textheading": "Title 3", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
-        [ "image": "splash_logo.png", "textheading": "Title 4", "text": "Lorem Ipsum"],
+	
+    let slides = [
+		[ "image": "onboard_1.png", "textheading": "Meet Luna.", "text": "You may not know her, but she's your best buddy in the outer space."],
+		[ "image": "onboard_2.png", "textheading": "Express yourself.", "text": "Share your stories, \n to the moon and back."],
+		[ "image": "onboard_3.png", "textheading": "Listen to the whisper.", "text": "Listen and chat with Luna all over the space. You name them."],
 	]
 	
     let screen: CGRect = UIScreen.mainScreen().bounds
@@ -24,7 +24,9 @@ class OnboardingController: UIViewController, UIScrollViewDelegate {
 	
     override func viewDidLoad() {
 		super.viewDidLoad()
-		view.backgroundColor = backgroundColor
+//		view.backgroundColor = backgroundColor
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "onboard_bg.png")!)
+        
 		scroll = UIScrollView(frame: CGRect(x: 0.0, y: 0.0, width: screen.width, height: screen.height * 0.9))
 		scroll?.showsHorizontalScrollIndicator = false
 		scroll?.showsVerticalScrollIndicator = false
@@ -42,7 +44,7 @@ class OnboardingController: UIViewController, UIScrollViewDelegate {
 				scroll?.addSubview(imageView)
 			}
             if let textHeading = slides[i]["textheading"] {
-                var textHeadingView = UITextView(frame: CGRect(x: screen.width * 0.1 + CGFloat(i) * screen.width, y: screen.height * 0.65, width: screen.width * 0.8, height: 100.0))
+                var textHeadingView = UITextView(frame: CGRect(x: screen.width * 0.1 + CGFloat(i) * screen.width, y: screen.height * 0.62, width: screen.width * 0.8, height: 100.0))
                 textHeadingView.text = textHeading
                 textHeadingView.editable = false
                 textHeadingView.selectable = false
@@ -59,7 +61,7 @@ class OnboardingController: UIViewController, UIScrollViewDelegate {
 				textView.editable = false
 				textView.selectable = false
 				textView.textAlignment = NSTextAlignment.Center
-				textView.font = UIFont(name: "AvenirNext-Regular", size: 17)
+				textView.font = UIFont(name: "AvenirNext-Regular", size: 15)
 				textView.textColor = UIColor.whiteColor()
 				textView.backgroundColor = UIColor.clearColor()
                 
