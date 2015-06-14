@@ -13,12 +13,20 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet var messagesTable: UITableView!
     @IBOutlet var shareButton: UIButton!
     let defaults = NSUserDefaults.standardUserDefaults()
-    var items: [String] = ["Hello", "World"]
+    var messages: Messages = Messages()
+    var messagesArray: [Messages] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         defaults.setBool(false, forKey: "sentMessages")
         self.messagesTable.delegate = self
         self.messagesTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        let dateString = "2014-07-05"
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let message = Message(content: "hello poeple", createdAt: dateFormatter.dateFromString(dateString)!, senderID: 1, receiverID: 2)
+        self.messages.append(message)
+        self.messagesArray = [messages]
+        self.messagesTable.reloadData()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -49,20 +57,23 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items.count
+        return self.messagesArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell = self.messagesTable.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
-        
-        cell.textLabel?.text = self.items[indexPath.row]
-        
+        let mes: Messages = self.messagesArray[indexPath.row]
+        cell.textLabel?.text = ""
+        if mes.all.count > 0 {
+            cell.textLabel?.text = mes.all.last!.content
+        }
         return cell
     }
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println("You selected cell #\(indexPath.row)!")
-        defaults.setValue("SelectedObject", forKey: "Selected")
+        let messageArray:Messages = self.messagesArray[indexPath.row]
+        var dict : NSDictionary = ["key":"value"]
+        var array1: NSArray = dict.allValues // Create a dictionary and assign that to this array
+        defaults.setObject(array1, forKey: "selectedMessages")
         openShare(self)
     }
 

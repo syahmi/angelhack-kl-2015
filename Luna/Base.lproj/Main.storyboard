@@ -127,6 +127,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="mTU-xN-A1t" id="vSo-Lt-h6H"/>
+                                    <outlet property="delegate" destination="mTU-xN-A1t" id="qxu-Kx-Q5f"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -137,6 +141,7 @@
                     </view>
                     <connections>
                         <outlet property="messageField" destination="dx7-3y-gel" id="ZkY-ne-eJY"/>
+                        <outlet property="messageTable" destination="YDa-Oq-JeO" id="UEx-sT-hag"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LcK-XA-pPl" userLabel="First Responder" sceneMemberID="firstResponder"/>
