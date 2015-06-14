@@ -12,10 +12,15 @@ import SwiftHTTP
 
 class MessagesViewController : UIViewController, UITextFieldDelegate {
     @IBOutlet var messageField: UITextField!
+    let defaults = NSUserDefaults.standardUserDefaults()
+    var selectedMessages: AnyObject!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         messageField.delegate = self
+
+        selectedMessages = defaults.valueForKey("selectedMessages")
         
         var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         view.addGestureRecognizer(tap)
@@ -23,8 +28,9 @@ class MessagesViewController : UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(false)
-        
     }
+    
+    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         println(messageField.text);
@@ -32,6 +38,7 @@ class MessagesViewController : UIViewController, UITextFieldDelegate {
         request.GET("http://google.com", parameters: nil, completionHandler: {(response: HTTPResponse) in
             if let err = response.error {
                 println("error: \(err.localizedDescription)")
+                self.defaults.setBool(true, forKey: "sentMessages")
                 return //also notify app of failure as needed
             }
             if let data = response.responseObject as? NSData {
@@ -39,6 +46,7 @@ class MessagesViewController : UIViewController, UITextFieldDelegate {
                 println("response: \(str)") //prints the HTML of the page
             }
         })
+        self.navigationController?.popViewControllerAnimated(true)
         return true
     }
     
