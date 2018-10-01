@@ -17,10 +17,10 @@ class OnboardingController: UIViewController, UIScrollViewDelegate {
 		[ "image": "onboard_3.png", "textheading": "Listen to the whisper.", "text": "Listen and chat with Luna all over the space. You name them."],
 	]
 	
-    let screen: CGRect = UIScreen.mainScreen().bounds
+    let screen: CGRect = UIScreen.main.bounds
 	var scroll: UIScrollView?
 	var dots: UIPageControl?
-    let button = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+    let button = UIButton(type: UIButtonType.system)
 	
     override func viewDidLoad() {
 		super.viewDidLoad()
@@ -30,19 +30,19 @@ class OnboardingController: UIViewController, UIScrollViewDelegate {
 		scroll = UIScrollView(frame: CGRect(x: 0.0, y: 0.0, width: screen.width, height: screen.height * 0.9))
 		scroll?.showsHorizontalScrollIndicator = false
 		scroll?.showsVerticalScrollIndicator = false
-		scroll?.pagingEnabled = true
+        scroll?.isPagingEnabled = true
 		view.addSubview(scroll!)
 		if (slides.count > 1) {
 			dots = UIPageControl(frame: CGRect(x: 0.0, y: screen.height * 0.82, width: screen.width, height: screen.height * 0.05))
 			dots?.numberOfPages = slides.count
 			view.addSubview(dots!)
 		}
-		for var i = 0; i < slides.count; ++i {
-			if let image = UIImage(named: slides[i]["image"]!) {
-				var imageView: UIImageView = UIImageView(frame: getFrame(image.size.width, iH: image.size.height, slide: i, offset: screen.height * 0.15))
-				imageView.image = image
-				scroll?.addSubview(imageView)
-			}
+        for var i = 0; i < slides.count; ++i {
+            if let image = UIImage(named: slides[i]["image"]!) {
+                var imageView: UIImageView = UIImageView(frame: getFrame(image.size.width, iH: image.size.height, slide: i, offset: screen.height * 0.15))
+                imageView.image = image
+                scroll?.addSubview(imageView)
+            }
             if let textHeading = slides[i]["textheading"] {
                 var textHeadingView = UITextView(frame: CGRect(x: screen.width * 0.1 + CGFloat(i) * screen.width, y: screen.height * 0.62, width: screen.width * 0.8, height: 100.0))
                 textHeadingView.text = textHeading
@@ -54,19 +54,19 @@ class OnboardingController: UIViewController, UIScrollViewDelegate {
                 textHeadingView.backgroundColor = UIColor.clearColor()
                 scroll?.addSubview(textHeadingView)
             }
-            
-			if let text = slides[i]["text"] {
-				var textView = UITextView(frame: CGRect(x: screen.width * 0.1 + CGFloat(i) * screen.width, y: screen.height * 0.70, width: screen.width * 0.8, height: 100.0))
-				textView.text = text
-				textView.editable = false
-				textView.selectable = false
-				textView.textAlignment = NSTextAlignment.Center
-				textView.font = UIFont(name: "AvenirNext-Regular", size: 15)
-				textView.textColor = UIColor.whiteColor()
-				textView.backgroundColor = UIColor.clearColor()
-                
-				scroll?.addSubview(textView)
-			}
+
+            if let text = slides[i]["text"] {
+                var textView = UITextView(frame: CGRect(x: screen.width * 0.1 + CGFloat(i) * screen.width, y: screen.height * 0.70, width: screen.width * 0.8, height: 100.0))
+                textView.text = text
+                textView.editable = false
+                textView.selectable = false
+                textView.textAlignment = NSTextAlignment.Center
+                textView.font = UIFont(name: "AvenirNext-Regular", size: 15)
+                textView.textColor = UIColor.whiteColor()
+                textView.backgroundColor = UIColor.clearColor()
+
+                scroll?.addSubview(textView)
+            }
             button.frame = CGRectMake(0.0, screen.height * 0.88, screen.width, 50)
             button.backgroundColor = UIColor.clearColor()
             button.titleLabel?.textAlignment = NSTextAlignment.Center
@@ -74,17 +74,17 @@ class OnboardingController: UIViewController, UIScrollViewDelegate {
             button.setTitle("Get Started", forState: UIControlState.Normal)
             button.titleLabel?.font = UIFont(name: "AvenirNext-Medium", size: 19)
             button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
-            
+
             self.view.addSubview(button)
-		}
+        }
         
-		scroll?.contentSize = CGSizeMake(CGFloat(Int(screen.width) *  slides.count), screen.height * 0.5)
+		scroll?.contentSize = CGSize(CGFloat(Int(screen.width) *  slides.count), screen.height * 0.5)
 		scroll?.delegate = self
-		dots?.addTarget(self, action: Selector("swipe:"), forControlEvents: UIControlEvents.ValueChanged)
+        dots?.addTarget(self, action: Selector("swipe:"), for: UIControlEvents.valueChanged)
 	}
     
     func buttonAction(sender: UIButton){
-        self.performSegueWithIdentifier("continueToCVC", sender: self)
+        self.performSegue(withIdentifier: "continueToCVC", sender: self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -92,11 +92,11 @@ class OnboardingController: UIViewController, UIScrollViewDelegate {
 	}
 	
     func getFrame (iW: CGFloat, iH: CGFloat, slide: Int, offset: CGFloat) -> CGRect {
-		var mH: CGFloat = screen.height * 0.50
-		var mW: CGFloat = screen.width
+        let mH: CGFloat = screen.height * 0.50
+        let mW: CGFloat = screen.width
 		var h: CGFloat
 		var w: CGFloat
-		var r = iW / iH
+        let r = iW / iH
 		if (r <= 1) {
 			h = min(mH, iH)
 			w = h * r
@@ -115,20 +115,12 @@ class OnboardingController: UIViewController, UIScrollViewDelegate {
     func swipe(sender: AnyObject) -> () {
 		if let scrollView = scroll {
 			let x = CGFloat(dots!.currentPage) * scrollView.frame.size.width
-			scroll?.setContentOffset(CGPointMake(x, 0), animated: true)
+            scroll?.setContentOffset(CGPoint(x: x, y: 0), animated: true)
 		}
 	}
 	
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) -> () {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) -> () {
 		let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
 		dots!.currentPage = Int(pageNumber)
 	}
-	
-    override func prefersStatusBarHidden() -> Bool {
-		return false
-	}
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
-    }
 }

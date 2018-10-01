@@ -13,7 +13,7 @@ import SwiftHTTP
 class MessagesViewController : UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var messageTable: UITableView!
     @IBOutlet var messageField: UITextField!
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     var messages: Messages = Messages()
     
     
@@ -24,18 +24,18 @@ class MessagesViewController : UIViewController, UITextFieldDelegate, UITableVie
 
         messageField.delegate = self
         messageTable.delegate = self
-        self.messageTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.messageTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
         let dateString = "2014-07-05"
-        var dateFormatter = NSDateFormatter()
+        var dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let message = Message(content: "hello poeple", createdAt: dateFormatter.dateFromString(dateString)!, senderID: 1, receiverID: 2)
-        self.messages.append(message)
+        let message = Message(content: "hello poeple", createdAt: dateFormatter.date(from: dateString)! as NSDate, senderID: 1, receiverID: 2)
+        self.messages.append(message: message)
         
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
     }
     
@@ -54,19 +54,19 @@ class MessagesViewController : UIViewController, UITextFieldDelegate, UITableVie
 //                println("response: \(str)") //prints the HTML of the page
 //            }
 //        })
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
         return true
     }
     
     func DismissKeyboard(){
         view.endEditing(true)
     }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.messages.all.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = self.messageTable.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell:UITableViewCell = self.messageTable.dequeueReusableCell(withIdentifier: "cell") as! UITableViewCell
         cell.textLabel?.text = self.messages.all[indexPath.row].content
         return cell
     }

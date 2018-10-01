@@ -10,7 +10,7 @@ import Foundation
 
 class Message {
     var content:String = ""
-    var createdAt:NSDate = NSDate.new()
+    var createdAt:NSDate = NSDate.init()
     var senderID:Int = 0
     var receiverID:Int = 0
     
