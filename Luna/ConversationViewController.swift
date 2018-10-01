@@ -9,33 +9,37 @@
 import UIKit
 
 class ConversationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+    
 
     @IBOutlet var messagesTable: UITableView!
     @IBOutlet var shareButton: UIButton!
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     var messages: Messages = Messages()
     var messagesArray: [Messages] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        defaults.setBool(false, forKey: "sentMessages")
+        defaults.set(false, forKey: "sentMessages")
         self.messagesTable.delegate = self
-        self.messagesTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.messagesTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         let dateString = "2014-07-05"
-        var dateFormatter = NSDateFormatter()
+        var dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let message = Message(content: "hello poeple", createdAt: dateFormatter.dateFromString(dateString)!, senderID: 1, receiverID: 2)
-        self.messages.append(message)
+        let message = Message(content: "hello poeple", createdAt: dateFormatter.date(from: dateString)! as NSDate, senderID: 1, receiverID: 2)
+        self.messages.append(message: message)
         self.messagesArray = [messages]
         self.messagesTable.reloadData()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        var sentMessage:Bool = defaults.valueForKey("sentMessages") as! Bool
+        var sentMessage:Bool = defaults.value(forKey: "sentMessages") as! Bool
         if (sentMessage) {
-             messagesTable.hidden = true
+            messagesTable.isHidden = true
         } else {
-            shareButton.hidden = true
+            shareButton.isHidden = true
         }
     }
 
@@ -45,38 +49,38 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     @IBAction func newAction(sender: AnyObject) {
-        openShare(self)
+        openShare(sender: self)
     }
 
     @IBAction func shareAction(sender: AnyObject) {
-        openShare(self)
+        openShare(sender: self)
     }
     
     func openShare(sender: AnyObject){
-        self.performSegueWithIdentifier("showShare", sender: self)
+        self.performSegue(withIdentifier: "showShare", sender: self)
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.messagesArray.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = self.messagesTable.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
+    private func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+        let cell:UITableViewCell = self.messagesTable.dequeueReusableCell(withIdentifier: "cell") as! UITableViewCell
         let mes: Messages = self.messagesArray[indexPath.row]
         cell.textLabel?.text = ""
         if mes.all.count > 0 {
             cell.textLabel?.text = mes.all.last!.content
         }
-        cell.backgroundColor = UIColor.clearColor()
-        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.backgroundColor = UIColor.clear
+        cell.textLabel?.textColor = UIColor.white
         return cell
     }
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let messageArray:Messages = self.messagesArray[indexPath.row]
-        var dict : NSDictionary = ["key":"value"]
-        var array1: NSArray = dict.allValues // Create a dictionary and assign that to this array
-        defaults.setObject(array1, forKey: "selectedMessages")
-        openShare(self)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let _:Messages = self.messagesArray[indexPath.row]
+        let dict : NSDictionary = ["key":"value"]
+        let array1: NSArray = dict.allValues as NSArray // Create a dictionary and assign that to this array
+        defaults.set(array1, forKey: "selectedMessages")
+        openShare(sender: self)
     }
 
 }
